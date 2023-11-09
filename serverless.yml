@@ -5,6 +5,19 @@ provider:
   name: aws
   runtime: nodejs18.x
 
+custom:
+  documentation:
+    version: 1.0.0
+    title: Serverless Node
+    description: Serverless Node
+    models:
+      - name: SuccessResponse
+        contentType: application/json
+
+      - name: ErrorResponse
+        description: This is an error
+        contentType: application/json
+
 functions:
   api:
     handler: server.handler
@@ -12,12 +25,55 @@ functions:
       - http:
           path: /api/swapi
           method: get
+          documentation:
+            summary: Star Wars API
+            description: Integración de Star Wars API
+            methodResponses:
+              - statusCode: 200
+                responseBody:
+                  description: Star Wars API integrada correctamente
+                responseModels:
+                  application/json: SuccessResponse
+              - statusCode: 400
+                responseBody:
+                  description: Error al integrar Star Wars API
+                responseModels:
+                  application/json: ErrorResponse
       - http:
           path: /api/school/listarAlumnos
           method: get
+          documentation:
+            summary: Listar Alumnos
+            description: Listar todos los alumnos registrados
+            methodResponses:
+              - statusCode: 200
+                responseBody:
+                  description: Alumnos listados correctamente
+                responseModels:
+                  application/json: SuccessResponse
+              - statusCode: 400
+                responseBody:
+                  description: Error al listar alumnos
+                responseModels:
+                  application/json: ErrorResponse
       - http:
           path: /api/school/crearAlumno
           method: post
+          documentation:
+            summary: Crear Alumno
+            description: Crear un alumno nuevo
+            methodResponses:
+              - statusCode: 200
+                responseBody:
+                  description: Alumno creado correctamente
+                responseModels:
+                  application/json: SuccessResponse
+              - statusCode: 400
+                responseBody:
+                  description: Error al crear alumno
+                responseModels:
+                  application/json: ErrorResponse
 
 plugins:
   - serverless-offline
+  - serverless-openapi-documentation

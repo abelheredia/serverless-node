@@ -7,12 +7,13 @@ class SchoolController {
       let query = "select * from alumno";
       let result = await conecction.query(query);
       return res.status(200).json({
+        message: "success",
         alumnos: result,
       });
     } catch (error) {
       console.log(error);
-      return res.status(500).json({
-        message: "Error",
+      return res.status(400).json({
+        message: "error",
       });
     }
   }
@@ -21,14 +22,14 @@ class SchoolController {
     try {
       const { nombre, fecha_nacimiento, email, telefono } = req.body;
       let query = `insert into alumno (nombre, fecha_nacimiento, email, telefono) values ('${nombre}', '${fecha_nacimiento}', '${email}', '${telefono}')`;
-      let result = await conecction.query(query);
+      conecction.query(query);
       return res.status(200).json({
-        result: result,
+        message: "success",
       });
     } catch (error) {
       console.log(error);
-      return res.status(500).json({
-        message: "Error",
+      return res.status(400).json({
+        message: "error",
       });
     }
   }

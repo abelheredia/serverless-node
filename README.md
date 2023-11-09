@@ -1,6 +1,8 @@
 ### deploy en aws
 
+```bash
 serverless deploy
+```
 
 ### script para modelo en base de datos
 

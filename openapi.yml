@@ -1,0 +1,63 @@
+openapi: 3.0.0
+components:
+  schemas: {}
+  securitySchemes: {}
+info:
+  title: Serverless Node
+  description: Serverless Node
+  version: 1.0.0
+paths:
+  //api/swapi:
+    get:
+      operationId: api
+      summary: Star Wars API
+      description: Integración de Star Wars API
+      responses:
+        '200':
+          description: Star Wars API integrada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Error al integrar Star Wars API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  //api/school/listarAlumnos:
+    get:
+      operationId: api
+      summary: Listar Alumnos
+      description: Listar todos los alumnos registrados
+      responses:
+        '200':
+          description: Alumnos listados correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Error al listar alumnos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  //api/school/crearAlumno:
+    post:
+      operationId: api
+      summary: Crear Alumno
+      description: Crear un alumno nuevo
+      responses:
+        '200':
+          description: Alumno creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Error al crear alumno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'

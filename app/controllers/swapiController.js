@@ -7,11 +7,14 @@ class SwapiController {
       const result = await axios.get("https://swapi.dev/api/films/1");
       const Swapi = new SwapiModel(result.data);
       const dataTranslate = await Swapi.traducir();
-      return res.status(200).json(dataTranslate);
+      return res.status(200).json({
+        message: "success",
+        data: dataTranslate,
+      });
     } catch (error) {
       console.log(error);
-      return res.status(500).json({
-        message: "Error",
+      return res.status(400).json({
+        message: "error",
       });
     }
   }
