@@ -1,0 +1,23 @@
+service: serverless-node
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  api:
+    handler: server.handler
+    events:
+      - http:
+          path: /api/swapi
+          method: get
+      - http:
+          path: /api/school/listarAlumnos
+          method: get
+      - http:
+          path: /api/school/crearAlumno
+          method: post
+
+plugins:
+  - serverless-offline
