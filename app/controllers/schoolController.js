@@ -8,7 +8,7 @@ class SchoolController {
       let result = await conecction.query(query);
       return res.status(200).json({
         message: "success",
-        alumnos: result,
+        alumnos: JSON.parse(JSON.stringify(result)),
       });
     } catch (error) {
       console.log(error);
