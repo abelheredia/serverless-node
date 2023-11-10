@@ -1,11 +1,135 @@
 openapi: 3.0.0
 components:
-  schemas: {}
-  securitySchemes: {}
+  schemas:
+    Alumno:
+      type: object
+      properties:
+        idalumno:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: Juan
+        fecha_nacimiento:
+          type: string
+          example: 1990-01-01
+        email:
+          type: string
+          example: juan@gmail.com
+        telefono:
+          type: string
+          example: 994324746
+    CrearAlumno:
+      type: object
+      properties:
+        nombre:
+          type: string
+          example: Juan
+        fecha_nacimiento:
+          type: string
+          example: 1990-01-01
+        email:
+          type: string
+          example: juan@gmail.com
+        telefono:
+          type: string
+          example: 994324746
+    Film:
+      type: object
+      properties:
+        título:
+          type: string
+          example: A New Hope
+        episodio_id:
+          type: integer
+          example: 4
+        director:
+          type: string
+          example: George Lucas
+        productor:
+          type: string
+          example: Gary Kurtz, Rick McCallum
+        fecha_lanzamiento:
+          type: string
+          example: 1977-05-25
+        personajes:
+          type: array
+          example:
+            [
+              "https://swapi.dev/api/people/1/",
+              "https://swapi.dev/api/people/2/",
+              "https://swapi.dev/api/people/3/",
+              "https://swapi.dev/api/people/4/",
+              "https://swapi.dev/api/people/5/",
+              "https://swapi.dev/api/people/6/",
+              "https://swapi.dev/api/people/7/",
+              "https://swapi.dev/api/people/8/",
+              "https://swapi.dev/api/people/9/",
+              "https://swapi.dev/api/people/10/",
+              "https://swapi.dev/api/people/12/",
+              "https://swapi.dev/api/people/13/",
+              "https://swapi.dev/api/people/14/",
+              "https://swapi.dev/api/people/15/",
+              "https://swapi.dev/api/people/16/",
+              "https://swapi.dev/api/people/18/",
+              "https://swapi.dev/api/people/19/",
+              "https://swapi.dev/api/people/81/",
+            ]
+        planetas:
+          type: array
+          example:
+            [
+              "https://swapi.dev/api/planets/1/",
+              "https://swapi.dev/api/planets/2/",
+              "https://swapi.dev/api/planets/3/",
+            ]
+        naves_estelares:
+          type: array
+          example:
+            [
+              "https://swapi.dev/api/starships/2/",
+              "https://swapi.dev/api/starships/3/",
+              "https://swapi.dev/api/starships/5/",
+              "https://swapi.dev/api/starships/9/",
+              "https://swapi.dev/api/starships/10/",
+              "https://swapi.dev/api/starships/11/",
+              "https://swapi.dev/api/starships/12/",
+              "https://swapi.dev/api/starships/13/",
+            ]
+        vehiculos:
+          type: array
+          example:
+            [
+              "https://swapi.dev/api/vehicles/4/",
+              "https://swapi.dev/api/vehicles/6/",
+              "https://swapi.dev/api/vehicles/7/",
+              "https://swapi.dev/api/vehicles/8/",
+            ]
+        especies:
+          type: array
+          example:
+            [
+              "https://swapi.dev/api/species/1/",
+              "https://swapi.dev/api/species/2/",
+              "https://swapi.dev/api/species/3/",
+              "https://swapi.dev/api/species/4/",
+              "https://swapi.dev/api/species/5/",
+            ]
+        creado:
+          type: string
+          example: 2014-12-10T14:23:31.880000Z
+        editado:
+          type: string
+          example: 2014-12-20T19:49:45.256000Z
+        url:
+          type: string
+          example: https://swapi.dev/api/films/1/
+
 info:
   title: Serverless Node
   description: Serverless Node
   version: 1.0.0
+
 paths:
   /api/swapi:
     get:
@@ -14,9 +138,27 @@ paths:
       responses:
         "200":
           description: Star Wars API integrada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  data:
+                    $ref: "#/components/schemas/Film"
 
         "400":
           description: Error al integrar Star Wars API
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error
 
   /api/school/listarAlumnos:
     get:
@@ -25,17 +167,58 @@ paths:
       responses:
         "200":
           description: Alumnos listados correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  alumnos:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Alumno"
 
         "400":
           description: Error al listar alumnos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error
 
   /api/school/crearAlumno:
     post:
       summary: Crear Alumno
       description: Crear un alumno nuevo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CrearAlumno"
       responses:
         "200":
           description: Alumno creado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
 
         "400":
           description: Error al crear alumno
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error
