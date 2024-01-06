@@ -2,10 +2,17 @@
 const conecction = require("../../../config/db");
 
 class Service {
+
     static async listar() {
-        let query = "select * from gfs";
-        let result = await conecction.query(query);
-        return result;
+        try {
+            let query = "select * from gfs";
+            let result = await conecction.query(query);
+            return result;
+        } catch (error) {
+            console.log(error);
+            return []
+        }
+
     }
 }
 

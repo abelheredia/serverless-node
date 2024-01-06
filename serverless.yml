@@ -12,6 +12,12 @@ functions:
       - http:
           path: /listar
           method: get
+  agregar:
+    handler: src/gfs/agregar/controller.agregar
+    events:
+      - http:
+          path: /agregar
+          method: post
 
 plugins:
   - serverless-offline
