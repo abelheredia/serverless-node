@@ -6,18 +6,24 @@ provider:
   runtime: nodejs18.x
 
 functions:
-  listar:
-    handler: src/gfs/listar/controller.listar
+  gfs:
+    handler: src/gfs/controller.handler
     events:
       - http:
           path: /listar
           method: get
-  agregar:
-    handler: src/gfs/agregar/controller.agregar
-    events:
+      - http:
+          path: /listar/{idgf}
+          method: get
       - http:
           path: /agregar
           method: post
+      - http:
+          path: /editar
+          method: put
+      - http:
+          path: /eliminar/{idgf}
+          method: delete
 
 plugins:
   - serverless-offline
