@@ -1,7 +1,7 @@
 const Service = require('./service');
 
-const listar = async (idgf) => {
-    const data = await Service.listar(idgf);
+const listar = async (idpersona) => {
+    const data = await Service.listar(idpersona);
 
     if (data.length === 0) {
         return {
@@ -55,8 +55,8 @@ const editar = async (event) => {
 
 const eliminar = async (event) => {
 
-    const idgf = event.pathParameters ? event.pathParameters.idgf : 0;
-    const del = await Service.eliminar(idgf);
+    const idpersona = event.pathParameters ? event.pathParameters.idpersona : 0;
+    const del = await Service.eliminar(idpersona);
 
     if (!del) {
         return {
@@ -74,8 +74,8 @@ const eliminar = async (event) => {
 module.exports = {
     handler: async (event) => {
         if (event.httpMethod === 'GET') {
-            const idgf = event.pathParameters ? event.pathParameters.idgf : 0;
-            return listar(idgf);
+            const idpersona = event.pathParameters ? event.pathParameters.idpersona : 0;
+            return listar(idpersona);
         } else if (event.httpMethod === 'POST') {
             return agregar(event);
         } else if (event.httpMethod === 'PUT') {

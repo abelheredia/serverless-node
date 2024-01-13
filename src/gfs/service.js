@@ -2,9 +2,9 @@
 const conecction = require("../../config/db");
 
 class Service {
-    static async listar(idgf) {
+    static async listar(idpersona) {
         try {
-            let query = idgf === 0 ? "select * from gfs" : `select * from gfs where idgf = ${idgf}`;
+            let query = idpersona === 0 ? "select * from persona" : `select * from persona where idpersona = ${idpersona}`;
             let result = await conecction.query(query);
             return result;
         } catch (error) {
@@ -16,7 +16,7 @@ class Service {
     static async agregar(body) {
         try {
             const { nombre, telefono } = body;
-            let query = `insert into gfs (nombre, telefono) values ('${nombre}', '${telefono}')`;
+            let query = `insert into persona (nombre, telefono) values ('${nombre}', '${telefono}')`;
             await conecction.query(query);
             return true;
         } catch (error) {
@@ -27,8 +27,8 @@ class Service {
 
     static async editar(body) {
         try {
-            const { idgf, nombre, telefono } = body;
-            let query = `update gfs set nombre = '${nombre}', telefono = '${telefono}' where idgf = ${idgf}`;
+            const { idpersona, nombre, telefono } = body;
+            let query = `update persona set nombre = '${nombre}', telefono = '${telefono}' where idpersona = ${idpersona}`;
             await conecction.query(query);
             return true;
         } catch (error) {
@@ -37,9 +37,9 @@ class Service {
         }
     }
 
-    static async eliminar(idgf) {
+    static async eliminar(idpersona) {
         try {
-            let query = `delete from gfs where idgf = ${idgf}`;
+            let query = `delete from persona where idpersona = ${idpersona}`;
             await conecction.query(query);
             return true;
         } catch (error) {

@@ -13,7 +13,7 @@ functions:
           path: /listar
           method: get
       - http:
-          path: /listar/{idgf}
+          path: /listar/{idpersona}
           method: get
       - http:
           path: /agregar
@@ -22,7 +22,7 @@ functions:
           path: /editar
           method: put
       - http:
-          path: /eliminar/{idgf}
+          path: /eliminar/{idpersona}
           method: delete
 
 plugins:
