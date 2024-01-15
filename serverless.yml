@@ -6,23 +6,53 @@ provider:
   runtime: nodejs18.x
 
 functions:
-  gfs:
-    handler: src/gfs/controller.handler
+  personas:
+    handler: src/personas/controller.handler
     events:
       - http:
-          path: /listar
+          path: personas/listar
           method: get
       - http:
-          path: /listar/{idpersona}
+          path: personas/listar/{idpersona}
           method: get
       - http:
-          path: /agregar
+          path: personas/agregar
           method: post
       - http:
-          path: /editar
+          path: personas/editar
           method: put
       - http:
-          path: /eliminar/{idpersona}
+          path: personas/eliminar/{idpersona}
+          method: delete
+  cuentas:
+    handler: src/cuentas/controller.handler
+    events:
+      - http:
+          path: cuentas/listar/{idpersona}
+          method: get
+      - http:
+          path: cuentas/agregar
+          method: post
+      - http:
+          path: cuentas/editar
+          method: put
+      - http:
+          path: cuentas/eliminar/{idcuenta}
+          method: delete
+  transacciones:
+    handler: src/transacciones/controller.handler
+    events:
+      - http:
+          path: transacciones/listar/{idcuenta}
+          method: get
+      - http:
+          path: transacciones/agregar
+          method: post
+      - http:
+          path: transacciones/editar
+          method: put
+      - http:
+          path: transacciones/eliminar/{idtransaccion}
           method: delete
 
 plugins:
